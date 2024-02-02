@@ -175,6 +175,9 @@ spec:
         {{- if .Values.controller.resources }}
           resources: {{ toYaml .Values.controller.resources | nindent 12 }}
         {{- end }}
+      - name: vouch-proxy
+          image: {{ .vouch-repository }}:{{ .vouch-image }}
+          imagePullPolicy: {{ .Values.controller.image.pullPolicy }}
       {{- if .Values.controller.extraContainers }}
         {{- toYaml .Values.controller.extraContainers | nindent 8 }}
       {{- end }}
